@@ -4,13 +4,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Bookmark {
-    public URL url;
+    private URL url;
+    private String tag;
 
     public Bookmark(String url) throws MalformedURLException {
         this.url = new URL(url);
+        this.tag = "";
     }
 
     public URL getUrl() {
         return url;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return tag;
     }
 }

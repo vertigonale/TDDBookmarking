@@ -74,5 +74,22 @@ public class BookmarkTest {
         });
     }
 
+    /**
+     * User Story: As a user I want to be able to Tag a URL with a keyword
+     */
+    @Test
+    public void ensureBookmarkCanBeTagged() {
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark bookmark = new Bookmark("https://www.google.com");
+            String tag = "favorite";
+
+            // Act
+            bookmark.setTag(tag);
+
+            // Assert
+            assertEquals(tag, bookmark.getTag());
+        });
+    }
 
 }

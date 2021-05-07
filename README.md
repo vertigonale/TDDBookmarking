@@ -10,5 +10,6 @@
 // https://docs.oracle.com/javase/7/docs/api/java/net/URL.html#URL(java.lang.String)
 
 ## UserStory
-- [ ] As a user I want to be able to Tag a URL with a keyword
-
+- [x] As a user I want to be able to Tag a URL with a keyword
+### Test#2:
+- [x] ensure that a bookmark can be tagged
