@@ -23,4 +23,8 @@ public class Bookmark {
     public String getTag() {
         return tag;
     }
+
+    public int getRating() {
+        return 0;
+    }
 }

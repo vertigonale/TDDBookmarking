@@ -92,4 +92,22 @@ public class BookmarkTest {
         });
     }
 
+    /**
+     * User Story: As a user when I add a duplicate bookmark, I want the system to increase the rating of that bookmark, because no exact duplicates should exist
+     */
+    @Test
+    public void ensureRatingOfBookmarkStartsWithZero() {
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark google = new Bookmark("https://www.google.com");
+            int expectedRating = 0;
+            int actualRating;
+
+            // Act
+            actualRating = google.getRating();
+
+            // Assert
+            assertEquals(expectedRating, actualRating);
+        });
+    }
 }

@@ -19,5 +19,5 @@
 ### Test#1:
 - [x] ensure that a browser can have multiple bookmarks
 - [x] ensure that a browser doesnt allow duplicate bookmarks
-- [ ] ensure that a rating starts with zero
+- [x] ensure that a rating starts with zero
 - [ ] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again
