@@ -2,7 +2,7 @@
 
 ## UserStory
 - [x] As a user I want to bookmark a URL (URLs must be valid)
-### Test#1:
+### Tests:
 - [x] ensure that a Bookmark/Collection can be created
 - [x] ensure that a Bookmark can be added to the BookmarkCollection
 - [x] ensure that a given string can be parsed to a valid URL
@@ -11,13 +11,19 @@
 
 ## UserStory
 - [x] As a user I want to be able to Tag a URL with a keyword
-### Test#1:
+### Tests:
 - [x] ensure that a bookmark can be tagged
 
 ## UserStory
-- [ ] As a user when I add a duplicate bookmark, I want the system to increase the rating of that bookmark, because no exact duplicates should exist
-### Test#1:
+- [x] As a user when I add a duplicate bookmark, I want the system to increase the rating of that bookmark, because no exact duplicates should exist
+### Tests:
 - [x] ensure that a browser can have multiple bookmarks
 - [x] ensure that a browser doesnt allow duplicate bookmarks
 - [x] ensure that a rating starts with zero
 - [x] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again
+
+## UserStory
+- [ ] As a user I want to be able to filter bookmarks by one keyword
+### Tests:
+- [x] ensure that a browser can find bookmarks based on its tag
+- [ ] ensure that a browser can find bookmarks based on its tag

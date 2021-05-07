@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -67,7 +68,6 @@ public class BrowserTest {
             Bookmark google = new Bookmark("https://www.google.com");
             Bookmark duplicatedGoogle = new Bookmark("https://www.google.com");
             Browser browser = new Browser();
-            List<Bookmark> bookmarks = browser.getBookmarks();
             int expectedRating = 1;
             int googleRating;
 
@@ -82,27 +82,32 @@ public class BrowserTest {
     }
 
     /**
-     * User Story: As a user when I add a duplicate bookmark, I want the system to increase the rating of that bookmark, because no exact duplicates should exist
+     * User Story: As a user I want to be able to filter bookmarks by one keyword
      */
     @Test
-    public void ensureBrowserDoesntRaiseRatingOfBookmarkByInsertingADifferentOne() {
+    public void ensureBrowserFindsBookmarksByOneTag() {
         assertDoesNotThrow(() -> {
             // Arrange
             Bookmark google = new Bookmark("https://www.google.com");
-            Bookmark amazon = new Bookmark("https://www.amazon.com");
+            Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+            Bookmark facebook = new Bookmark("https://www.facebook.com");
             Browser browser = new Browser();
-            List<Bookmark> bookmarks = browser.getBookmarks();
-            int expectedRating = 0;
-            int googleRating;
+            List<Bookmark> expectedBookmarks = asList(google, baeldung);
+            List<Bookmark> foundBookmarks;
+            String keyword = "Programming";
 
-            // Act
+            google.setTag("Programming");
+            baeldung.setTag("Programming");
+            facebook.setTag("StalkingPeople");
             browser.add(google);
-            browser.add(amazon);
-            googleRating = browser.find(google).get().getRating();
+            browser.add(baeldung);
+            browser.add(facebook);
+
+            //Act
+            foundBookmarks = browser.findBookmarksBy(keyword);
 
             // Assert
-            assertEquals(expectedRating, googleRating);
+            assertEquals(expectedBookmarks, foundBookmarks);
         });
     }
-
 }

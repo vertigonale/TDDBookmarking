@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 public class Browser {
     private List<Bookmark> bookmarks;
@@ -36,5 +37,16 @@ public class Browser {
     private Predicate<Bookmark> byUrlOf(Bookmark bookmark) {
         return existingBookmark -> existingBookmark.getUrl().equals(bookmark.getUrl());
     }
+
+    public List<Bookmark> findBookmarksBy(String tag) {
+        return bookmarks.stream()
+                .filter(by(tag))
+                .collect(toUnmodifiableList());
+    }
+
+    private Predicate<Bookmark> by(String tag) {
+        return bookmark -> bookmark.getTag().equalsIgnoreCase(tag);
+    }
+
 
 }
