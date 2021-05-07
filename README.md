@@ -20,4 +20,4 @@
 - [x] ensure that a browser can have multiple bookmarks
 - [x] ensure that a browser doesnt allow duplicate bookmarks
 - [x] ensure that a rating starts with zero
-- [ ] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again
+- [x] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again

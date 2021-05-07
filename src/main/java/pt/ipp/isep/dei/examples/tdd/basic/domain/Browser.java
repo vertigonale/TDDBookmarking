@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.Collections.unmodifiableList;
@@ -18,12 +19,21 @@ public class Browser {
     }
 
     public void add(Bookmark bookmark) {
-        boolean browserDoesntContainBookmark = bookmarks.stream().noneMatch(foundOfUrlOf(bookmark));
+        Optional<Bookmark> existingBookmark = find(bookmark);
 
-        if (browserDoesntContainBookmark) bookmarks.add(bookmark);
+        existingBookmark.ifPresentOrElse(
+                Bookmark::increaseRating,
+                () -> bookmarks.add(bookmark)
+        );
     }
 
-    private Predicate<Bookmark> foundOfUrlOf(Bookmark bookmark) {
+    public Optional<Bookmark> find(Bookmark bookmark) {
+        return bookmarks.stream()
+                .filter(byUrlOf(bookmark))
+                .findAny();
+    }
+
+    private Predicate<Bookmark> byUrlOf(Bookmark bookmark) {
         return existingBookmark -> existingBookmark.getUrl().equals(bookmark.getUrl());
     }
 
