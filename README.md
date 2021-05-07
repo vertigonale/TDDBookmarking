@@ -11,5 +11,13 @@
 
 ## UserStory
 - [x] As a user I want to be able to Tag a URL with a keyword
-### Test#2:
+### Test#1:
 - [x] ensure that a bookmark can be tagged
+
+## UserStory
+- [ ] As a user when I add a duplicate bookmark, I want the system to increase the rating of that bookmark, because no exact duplicates should exist
+### Test#1:
+- [x] ensure that a browser can have multiple bookmarks
+- [ ] ensure that a browser doesnt allow duplicate bookmarks
+- [ ] ensure that a rating starts with zero
+- [ ] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again
