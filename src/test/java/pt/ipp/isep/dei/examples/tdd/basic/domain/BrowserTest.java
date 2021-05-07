@@ -85,7 +85,7 @@ public class BrowserTest {
      * User Story: As a user I want to be able to filter bookmarks by one keyword
      */
     @Test
-    public void ensureBrowserFindsBookmarksByOneTag() {
+    public void ensureBrowserFindsBookmarksByOneKeywordInsideTags() {
         assertDoesNotThrow(() -> {
             // Arrange
             Bookmark google = new Bookmark("https://www.google.com");
@@ -104,10 +104,38 @@ public class BrowserTest {
             browser.add(facebook);
 
             //Act
-            foundBookmarks = browser.findBookmarksBy(keyword);
+            foundBookmarks = browser.findBookmarksTaggedWith(keyword);
 
             // Assert
             assertEquals(expectedBookmarks, foundBookmarks);
         });
     }
+
+    /**
+     * User Story: As a user I want to be able to filter bookmarks by one keyword
+     */
+    @Test
+    public void ensureBrowserFindsBookmarksByOneKeywordInsideURLs() {
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark google = new Bookmark("https://www.google.com");
+            Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+            Bookmark facebook = new Bookmark("https://www.facebook.com");
+            Browser browser = new Browser();
+            List<Bookmark> expectedBookmarks = asList(google, baeldung, facebook);
+            List<Bookmark> foundBookmarks;
+            String keyword = "www";
+
+            browser.add(google);
+            browser.add(baeldung);
+            browser.add(facebook);
+
+            //Act
+            foundBookmarks = browser.findBookmarksWithUrlContaining(keyword);
+
+            // Assert
+            assertEquals(expectedBookmarks, foundBookmarks);
+        });
+    }
+
 }

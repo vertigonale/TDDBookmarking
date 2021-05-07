@@ -23,7 +23,7 @@
 - [x] ensure that a duplicated bookmark inside a browser raises its rating instead of inserting it again
 
 ## UserStory
-- [ ] As a user I want to be able to filter bookmarks by one keyword
+- [x] As a user I want to be able to filter bookmarks by one keyword
 ### Tests:
 - [x] ensure that a browser can find bookmarks based on its tag
-- [ ] ensure that a browser can find bookmarks based on its tag
+- [x] ensure that a browser can find bookmarks based on its URLs

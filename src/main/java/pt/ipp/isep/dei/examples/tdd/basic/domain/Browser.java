@@ -38,15 +38,24 @@ public class Browser {
         return existingBookmark -> existingBookmark.getUrl().equals(bookmark.getUrl());
     }
 
-    public List<Bookmark> findBookmarksBy(String tag) {
+    public List<Bookmark> findBookmarksTaggedWith(String keyword) {
         return bookmarks.stream()
-                .filter(by(tag))
+                .filter(inTagsBy(keyword))
                 .collect(toUnmodifiableList());
     }
 
-    private Predicate<Bookmark> by(String tag) {
-        return bookmark -> bookmark.getTag().equalsIgnoreCase(tag);
+    private Predicate<Bookmark> inTagsBy(String keyword) {
+        return bookmark -> bookmark.getTag().equalsIgnoreCase(keyword);
     }
 
 
+    public List<Bookmark> findBookmarksWithUrlContaining(String keyword) {
+        return bookmarks.stream()
+                .filter(inUrlContaining(keyword))
+                .collect(toUnmodifiableList());
+    }
+
+    private Predicate<Bookmark> inUrlContaining(String keyword) {
+        return bookmark -> bookmark.getUrl().toString().contains(keyword);
+    }
 }
