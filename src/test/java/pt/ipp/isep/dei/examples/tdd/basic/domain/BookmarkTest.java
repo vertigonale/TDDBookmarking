@@ -2,11 +2,12 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookmarkTest {
 
@@ -15,31 +16,63 @@ public class BookmarkTest {
      */
     @Test
     public void ensureBookmarkCanBeCreatedWithArguments() {
-        // Arrange
-        Bookmark bookmark;
-        String url = "https://www.google.com";
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark bookmark;
+            String url = "https://www.google.com";
+            URL expectedUrl = new URL(url);
 
-        // Act
-        bookmark = new Bookmark(url);
+            // Act
+            bookmark = new Bookmark(url);
 
-        // Assert
-        assertEquals(url, bookmark.getUrl());
+            // Assert
+            assertEquals(expectedUrl, bookmark.getUrl());
+        });
     }
-
 
     /**
      * User Story: As a user I want to bookmark a URL (URLs must be valid)
      */
     @Test
     public void ensureBookmarkCanBeAddedToCollection() {
-        // Arrange
-        Bookmark bookmark = new Bookmark("https://www.google.com");
-        List<Bookmark> bookmarkCollection = new ArrayList<>();
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark bookmark = new Bookmark("https://www.google.com");
+            List<Bookmark> bookmarkCollection = new ArrayList<>();
 
-        // Act
-        bookmarkCollection.add(bookmark);
+            // Act
+            bookmarkCollection.add(bookmark);
 
-        // Assert
-        assertTrue(bookmarkCollection.contains(bookmark));
+            // Assert
+            assertTrue(bookmarkCollection.contains(bookmark));
+        });
     }
+
+    /**
+     * User Story: As a user I want to bookmark a URL (URLs must be valid)
+     */
+    @Test
+    public void ensureGivenURLisInvalidInConstructor() {
+        assertThrows(MalformedURLException.class, () -> {
+            // Arrange
+            Bookmark bookmark;
+            // Act
+            bookmark = new Bookmark("");
+        });
+    }
+
+    /**
+     * User Story: As a user I want to bookmark a URL (URLs must be valid)
+     */
+    @Test
+    public void ensureGivenURLisValidInConstructor() {
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark bookmark;
+            // Act
+            bookmark = new Bookmark("https://www.google.com");
+        });
+    }
+
+
 }

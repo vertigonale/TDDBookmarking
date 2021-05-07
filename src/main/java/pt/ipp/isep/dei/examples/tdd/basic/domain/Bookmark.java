@@ -1,13 +1,16 @@
 package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
-public class Bookmark {
-    public String url;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-    public Bookmark(String url) {
-        this.url = url;
+public class Bookmark {
+    public URL url;
+
+    public Bookmark(String url) throws MalformedURLException {
+        this.url = new URL(url);
     }
 
-    public String getUrl() {
+    public URL getUrl() {
         return url;
     }
 }
