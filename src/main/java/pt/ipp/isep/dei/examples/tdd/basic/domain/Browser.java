@@ -48,7 +48,6 @@ public class Browser {
         return bookmark -> bookmark.getTag().equalsIgnoreCase(keyword);
     }
 
-
     public List<Bookmark> findBookmarksWithUrlContaining(String keyword) {
         return bookmarks.stream()
                 .filter(inUrlContaining(keyword))

@@ -23,6 +23,8 @@ public class BrowserTest {
             List<Bookmark> bookmarks = browser.getBookmarks();
             int expectedSize = 2;
             int actualSize;
+            int initSize = bookmarks.size();
+            int initExpectedSize = 0;
 
             // Act
             browser.add(google);
@@ -30,6 +32,7 @@ public class BrowserTest {
             actualSize = bookmarks.size();
 
             // Assert
+            assertEquals(initExpectedSize, initSize);
             assertEquals(expectedSize, actualSize);
         });
     }
