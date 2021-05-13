@@ -24,7 +24,10 @@ public class Browser {
 
         existingBookmark.ifPresentOrElse(
                 Bookmark::increaseRating,
-                () -> bookmarks.add(bookmark)
+                () -> {
+                    bookmarks.add(bookmark);
+                    bookmark.setTimeItWasAddedToNow();
+                }
         );
     }
 

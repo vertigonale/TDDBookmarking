@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,5 +110,23 @@ public class BookmarkTest {
             // Assert
             assertEquals(expectedRating, actualRating);
         });
+    }
+
+    /**
+     * User Story: As a user I want to add a current date/time when I add a bookmark
+     */
+    @Test
+    public void ensureTimeInAddedBookmarkIsNotNull() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        Browser browser = new Browser();
+        LocalDateTime actualTime;
+
+        // Act
+        browser.add(google);
+        actualTime = google.getTimeItWasAdded();
+
+        // Assert
+        assertNotNull(actualTime);
     }
 }
