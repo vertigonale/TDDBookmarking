@@ -42,4 +42,4 @@ As a user I want to add a current date/time when I add a bookmark
 ````
 ### Tests:
 - [x] ensure that the time in Bookmark is not null
-- [ ] ensure that the time in Bookmark is from today when its getting added
+- [x] ensure that the time in Bookmark is from today when its getting added

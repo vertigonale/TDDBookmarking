@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.LocalDateTime.now;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookmarkTest {
@@ -128,5 +129,29 @@ public class BookmarkTest {
 
         // Assert
         assertNotNull(actualTime);
+    }
+
+    /**
+     * User Story: As a user I want to add a current date/time when I add a bookmark
+     */
+    @Test
+    public void ensureTimeInAddedBookmarkIsFromToday() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        Browser browser = new Browser();
+        LocalDateTime expectedTime = now();
+        LocalDateTime actualTime;
+        int expectedYear = expectedTime.getYear();
+        int expectedMonth = expectedTime.getMonthValue();
+        int expectedDay = expectedTime.getDayOfMonth();
+
+        // Act
+        browser.add(google);
+        actualTime = google.getTimeItWasAdded();
+
+        // Assert
+        assertEquals(expectedYear, actualTime.getYear());
+        assertEquals(expectedMonth, actualTime.getMonthValue());
+        assertEquals(expectedDay, actualTime.getDayOfMonth());
     }
 }
