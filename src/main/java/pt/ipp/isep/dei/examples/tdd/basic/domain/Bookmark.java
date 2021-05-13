@@ -45,4 +45,9 @@ public class Bookmark {
     public void setTimeItWasAddedToNow() {
         this.timeItWasAdded = now();
     }
+
+    public boolean isUrlContaining(String keyword) {
+        String url = this.url.toString();
+        return url.contains(keyword);
+    }
 }

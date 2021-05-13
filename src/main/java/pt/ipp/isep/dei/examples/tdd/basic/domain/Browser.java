@@ -53,11 +53,8 @@ public class Browser {
 
     public List<Bookmark> findBookmarksWithUrlContaining(String keyword) {
         return bookmarks.stream()
-                .filter(inUrlContaining(keyword))
+                .filter(bookmark -> bookmark.isUrlContaining(keyword))
                 .collect(toUnmodifiableList());
     }
 
-    private Predicate<Bookmark> inUrlContaining(String keyword) {
-        return bookmark -> bookmark.getUrl().toString().contains(keyword);
-    }
 }

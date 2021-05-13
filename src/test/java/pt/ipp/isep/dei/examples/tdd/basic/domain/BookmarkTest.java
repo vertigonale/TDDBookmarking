@@ -154,4 +154,32 @@ public class BookmarkTest {
         assertEquals(expectedMonth, actualTime.getMonthValue());
         assertEquals(expectedDay, actualTime.getDayOfMonth());
     }
+
+    @Test
+    public void ensureKeywordCanBeFoundInURL() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        String keyword = "www";
+        boolean keywordWasFound = false;
+
+        // Act
+        keywordWasFound = google.isUrlContaining(keyword);
+
+        // Assert
+        assertTrue(keywordWasFound);
+    }
+
+    @Test
+    public void ensureKeywordCanNOTBeFoundInURL() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        String keyword = "JohnDoe";
+        boolean keywordWasFound = false;
+
+        // Act
+        keywordWasFound = google.isUrlContaining(keyword);
+
+        // Assert
+        assertFalse(keywordWasFound);
+    }
 }
