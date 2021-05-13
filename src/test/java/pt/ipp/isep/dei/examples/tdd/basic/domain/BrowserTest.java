@@ -141,4 +141,32 @@ public class BrowserTest {
         });
     }
 
+    /**
+     * User Story: As a user I want to be able to filter bookmarks by one keyword
+     */
+    @Test
+    public void ensureBrowserDoesntFindBookmarksByOneKeywordInsideURLs() {
+        assertDoesNotThrow(() -> {
+            // Arrange
+            Bookmark google = new Bookmark("https://www.google.com");
+            Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+            Bookmark facebook = new Bookmark("https://www.facebook.com");
+            Browser browser = new Browser();
+            List<Bookmark> expectedBookmarks = asList(google, baeldung, facebook);
+            List<Bookmark> foundBookmarks;
+            String keyword = "amazon";
+
+            browser.add(google);
+            browser.add(baeldung);
+            browser.add(facebook);
+
+            //Act
+            foundBookmarks = browser.findBookmarksWithUrlContaining(keyword);
+
+            // Assert
+            assertEquals(0, foundBookmarks.size());
+        });
+    }
+
+
 }
