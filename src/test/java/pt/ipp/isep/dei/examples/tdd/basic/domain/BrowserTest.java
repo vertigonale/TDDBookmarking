@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -168,5 +169,54 @@ public class BrowserTest {
         });
     }
 
+    /**
+     * User Story:
+     * As a user I want to know how many of my bookmarks are secure URLs
+     * Test:
+     * ensure that a browser counts bookmarks with secure URLs
+     */
+    @Test
+    public void ensureBrowserCountsBookmarkWithSecureURL() {
+        // Arrange
+        try {
+            // Arrange
+            Bookmark google = new Bookmark("https://www.google.com");
+            Browser browser = new Browser();
+            long expectedCount = 1;
+            long actualCount;
+            browser.add(google);
+
+            // Act
+            actualCount = browser.countSecureURLs();
+
+            // Assert
+            assertEquals(expectedCount, actualCount);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void ensureBrowserCountsBookmarkWithNoSecureURL() {
+        // Arrange
+        try {
+            // Arrange
+            Bookmark google = new Bookmark("http://www.google.com");
+            Browser browser = new Browser();
+            long expectedCount = 0;
+            long actualCount;
+            browser.add(google);
+
+            // Act
+            actualCount = browser.countSecureURLs();
+
+            // Assert
+            assertEquals(expectedCount, actualCount);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

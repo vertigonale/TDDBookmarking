@@ -43,3 +43,10 @@ As a user I want to add a current date/time when I add a bookmark
 ### Tests:
 - [x] ensure that the time in Bookmark is not null
 - [x] ensure that the time in Bookmark is from today when its getting added
+
+## User Story
+````
+As a user I want to know how many of my bookmarks are secure URLs
+````
+### Tests:
+- [x] ensure that a browser counts bookmarks with https
