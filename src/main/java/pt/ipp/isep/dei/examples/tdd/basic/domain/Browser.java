@@ -59,6 +59,7 @@ public class Browser {
 
     public long countSecureURLs() {
         return bookmarks.stream()
-                .filter(bookmark -> bookmark.getUrl().getProtocol().equals("https")).count();
+                .filter(bookmark -> bookmark.getUrl().getProtocol().equals("https"))
+                .count();
     }
 }

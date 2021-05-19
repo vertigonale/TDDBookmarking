@@ -198,7 +198,7 @@ public class BrowserTest {
     }
 
     @Test
-    public void ensureBrowserCountsBookmarkWithNoSecureURL() {
+    public void ensureBrowserDoesNotCountBookmarkWithNoSecureURL() {
         // Arrange
         try {
             // Arrange
@@ -207,6 +207,32 @@ public class BrowserTest {
             long expectedCount = 0;
             long actualCount;
             browser.add(google);
+
+            // Act
+            actualCount = browser.countSecureURLs();
+
+            // Assert
+            assertEquals(expectedCount, actualCount);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void ensureBrowserCountsOnlyBookmarkWithSecureURL() {
+        // Arrange
+        try {
+            // Arrange
+            Bookmark google = new Bookmark("https://www.google.com");
+            Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+            Bookmark facebook = new Bookmark("http://www.facebook.com");
+            Browser browser = new Browser();
+            long expectedCount = 2;
+            long actualCount;
+            browser.add(google);
+            browser.add(baeldung);
+            browser.add(facebook);
 
             // Act
             actualCount = browser.countSecureURLs();
