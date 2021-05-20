@@ -50,6 +50,7 @@ As a user I want to know how many of my bookmarks are secure URLs
 ````
 ### Tests:
 - [x] ensure that a browser counts bookmarks with https
+- [x] ensure that a browser does not count bookmarks with http
 
 ## User Story
 ````
@@ -57,3 +58,10 @@ As a user I want a new bookmark to become associated with other bookmarks that a
 ````
 ### Tests:
 - [x] ensure that a browser can find bookmarks based on their domain (host name)
+
+## User Story
+````
+As a user I want to remove a TAG from a bookmark
+````
+### Tests:
+- [ ] ensure that 
