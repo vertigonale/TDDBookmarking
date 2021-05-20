@@ -62,4 +62,11 @@ public class Browser {
                 .filter(bookmark -> bookmark.getUrl().getProtocol().equals("https"))
                 .count();
     }
+
+    public List<Bookmark> getAssociatedURLs(Bookmark newBookmark) {
+        String domain = newBookmark.getUrl().getHost();
+        return bookmarks.stream()
+                .filter(bookmark -> bookmark.getUrl().getHost().equals(domain))
+                .collect(toUnmodifiableList());
+    }
 }

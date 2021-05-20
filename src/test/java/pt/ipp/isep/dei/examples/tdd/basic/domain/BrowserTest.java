@@ -245,4 +245,43 @@ public class BrowserTest {
         }
     }
 
+    /**
+     * User Story:
+     * As a user I want a new bookmark to become associated with other bookmarks that are from the same domain
+     * Test:
+     * ensure that a browser can find bookmarks based on their domain (host name)
+     */
+    @Test
+    public void ensureBrowserFindsBookmarksByDomain() {
+        // Arrange
+        try {
+            Bookmark google1 = new Bookmark("https://www.google.com");
+            Bookmark google2 = new Bookmark("https://www.google.com/images");
+            Bookmark google3 = new Bookmark("http://www.google.com/maps");
+            Bookmark newBookmark = new Bookmark("http://www.google.com/news");
+            Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+            Bookmark facebook = new Bookmark("http://www.facebook.com");
+            Browser browser = new Browser();
+
+            List<Bookmark> expectedBookmarks = asList(google1, google2, google3, newBookmark);
+            List<Bookmark> foundBookmarks;
+
+            browser.add(google1);
+            browser.add(google2);
+            browser.add(google3);
+            browser.add(newBookmark);
+            browser.add(baeldung);
+            browser.add(facebook);
+
+            // Act
+            foundBookmarks = browser.getAssociatedURLs(newBookmark);
+
+            // Assert
+            assertEquals(expectedBookmarks, foundBookmarks);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

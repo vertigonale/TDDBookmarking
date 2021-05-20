@@ -50,3 +50,10 @@ As a user I want to know how many of my bookmarks are secure URLs
 ````
 ### Tests:
 - [x] ensure that a browser counts bookmarks with https
+
+## User Story
+````
+As a user I want a new bookmark to become associated with other bookmarks that are from the same domain
+````
+### Tests:
+- [x] ensure that a browser can find bookmarks based on their domain (host name)
